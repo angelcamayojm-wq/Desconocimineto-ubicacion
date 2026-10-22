@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma Logística WMS — SENA</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Gestión & Trazabilidad de Almacén</h1>
+        <p class="subtitle">Automatización para la resolución del desconocimiento de ubicaciones</p>
+      </div>
+      <span class="pill-badge">Proyecto SENA ADSO</span>
+    </header>
+
+    <!-- KPIs Editorial -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-title">Tiempo de Búsqueda</div>
+        <div class="kpi-value">3 seg</div>
+      </div>
+      <div class="kpi-card peach">
+        <div class="kpi-title">Precisión de Inventario</div>
+        <div class="kpi-value">100%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-title">Trazabilidad en Bodega</div>
+        <div class="kpi-value">Digital</div>
+      </div>
+    </div>
+
+    <!-- App Panels -->
+    <div class="app-grid">
+      <!-- Módulo 1 -->
+      <div class="card-panel">
+        <div class="panel-header">
+          <h2>01. Consulta & Búsqueda con PDA</h2>
+        </div>
+        <label>Selecciona un producto del catálogo:</label>
+        <select id="select-producto"></select>
+        <button id="btn-escanear" class="btn-pill">🔍 Consultar Ubicación Exacta</button>
+
+        <div id="resultado-pda" class="result-output">
+          Selecciona un elemento para obtener su posición en el almacén.
+        </div>
+      </div>
+
+      <!-- Módulo 2 -->
+      <div class="card-panel">
+        <div class="panel-header">
+          <h2>02. Mapa Interactivo de Pasillos</h2>
+        </div>
+        <p style="font-size:13px; color:var(--color-slate-gray);">El pasillo se resaltará al escanear o buscar un producto:</p>
+        
+        <div class="map-grid">
+          <div class="map-box" data-pasillo="01">Pasillo 01</div>
+          <div class="map-box" data-pasillo="02">Pasillo 02</div>
+          <div class="map-box" data-pasillo="03">Pasillo 03</div>
+        </div>
+      </div>
+
+      <!-- Módulo 3 -->
+      <div class="card-panel">
+        <div class="panel-header">
+          <h2>03. Registrar e Ingresar Producto</h2>
+        </div>
+        <label>Nombre del Producto:</label>
+        <input type="text" id="in-nombre" placeholder="Ej. Impresora Térmica">
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+          <div>
+            <label>Pasillo</label>
+            <input type="text" id="in-pasillo" placeholder="01">
+          </div>
+          <div>
+            <label>Estante</label>
+            <input type="text" id="in-estante" placeholder="A">
+          </div>
+          <div>
+            <label>Nivel</label>
+            <input type="text" id="in-nivel" placeholder="01">
+          </div>
+        </div>
+
+        <button id="btn-ingresar" class="btn-pill">📦 Registrar y Asignar Coordenada</button>
+
+        <div id="res-ingreso" class="result-output">
+          Ingresa los datos para registrar un ítem en el sistema WMS.
+        </div>
+      </div>
+
+      <!-- Módulo 4 -->
+      <div class="card-panel full-width">
+        <div class="panel-header">
+          <h2>04. Bitácora de Trazabilidad en Tiempo Real</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Hora</th>
+              <th>SKU</th>
+              <th>Ubicación</th>
+              <th>Evento</th>
+            </tr>
+          </thead>
+          <tbody id="audit-log-body">
+            <tr>
+              <td class="mono">--:--:--</td>
+              <td class="mono">SYSTEM</td>
+              <td class="mono">PAS-00-EST-00-NIV-00</td>
+              <td>Plataforma lista e inicializada</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>
